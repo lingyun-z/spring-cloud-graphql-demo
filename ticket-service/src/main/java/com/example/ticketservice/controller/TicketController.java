@@ -15,6 +15,7 @@ import java.util.List;
 @RequestMapping("/api/ticket")
 public class TicketController {
   private final Logger logger = LoggerFactory.getLogger(TicketController.class);
+
   @Resource
   private TicketService ticketService;
 
@@ -23,6 +24,7 @@ public class TicketController {
     Ticket ticket = null;
     try {
       ticket = ticketService.selectTicketById(id);
+      logger.info("getTicketById id: {}", id);
     } catch (Exception e) {
       logger.error(e.getMessage());
       return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
@@ -32,9 +34,11 @@ public class TicketController {
 
   @GetMapping
   public ResponseEntity<List<Ticket>> getAllTickets() {
+    logger.info("getAllTickets");
     List<Ticket> tickets = null;
     try {
       tickets = ticketService.getAll();
+      logger.info("getAllTickets");
     } catch (Exception e) {
       logger.error(e.getMessage());
       return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
@@ -48,6 +52,7 @@ public class TicketController {
     List<Ticket> result = null;
     try {
       result = ticketService.selectTicketByUserId(userId);
+      logger.info("selectTicketByUserId user-id: {}", userId);
     } catch (Exception e) {
       logger.error(e.getMessage());
       return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
@@ -60,6 +65,7 @@ public class TicketController {
     Ticket retValue = null;
     try {
       retValue = ticketService.createTicket(ticket);
+      logger.info("createTicket ticket: {}", ticket);
     } catch (Exception e) {
       logger.error(e.getMessage());
       return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
@@ -73,6 +79,7 @@ public class TicketController {
     try{
       if (ticketService.deleteTicketById(id) == 0) {
         retStatus = HttpStatus.BAD_REQUEST;
+        logger.info("deteteTicketById id: {}", id);
       }
     } catch (Exception e) {
       logger.error(e.getMessage());
@@ -87,6 +94,7 @@ public class TicketController {
     try{
       ticket.setId(id);
       retValue = ticketService.updateTicket(ticket);
+      logger.info("updateTicket id: {} ticket: {}", id, ticket);
     } catch (Exception e) {
       logger.error(e.getMessage());
       return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);

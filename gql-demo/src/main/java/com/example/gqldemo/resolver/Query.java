@@ -29,4 +29,8 @@ public class Query implements GraphQLQueryResolver {
   public Ticket selectTicketById(String id) {
     return ticketDao.selecteTicketById(id);
   }
+
+  public List<Ticket> getAllTicket() {
+    return ticketDao.getAllTicket();
+  }
 }

@@ -3,11 +3,12 @@ type Ticket {
     title: String!
     createdBy: String!
     deleted: Boolean!
-    user: User!
+    user: User
 }
 
 type Query {
     selectTicketById(id: ID!): Ticket!
+    getAllTicket: [Ticket]!
 }
 
 type Mutation{

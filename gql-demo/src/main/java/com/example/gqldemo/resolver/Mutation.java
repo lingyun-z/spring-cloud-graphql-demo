@@ -6,6 +6,7 @@ import org.springframework.stereotype.Component;
 
 @Component
 public class Mutation implements GraphQLMutationResolver {
+
   public User addUser(User user) {
     return new User();
   }

@@ -24,6 +24,7 @@ public class UserController {
     List<User> result = null;
     try{
       result = userService.getAll();
+      logger.info("getAllUsers");
     } catch (Exception e) {
       logger.error(e.getMessage());
       return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
@@ -36,6 +37,7 @@ public class UserController {
     User result = null;
     try {
       result = userService.selectUserById(id);
+      logger.info("getUserById id: {}", id);
     } catch (Exception e) {
       logger.error(e.getMessage());
       return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
@@ -48,6 +50,7 @@ public class UserController {
     User result = null;
     try {
       result = userService.createUser(user);
+      logger.info("createUser user: {}", user.toString());
     } catch (Exception e) {
       logger.error(e.getMessage());
       return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
@@ -61,6 +64,7 @@ public class UserController {
     try {
       user.setId(id);
       result = userService.updateUser(user);
+      logger.info("updateUser id: {} user: {}", id, user.toString());
     } catch (Exception e) {
       logger.error(e.getMessage());
       return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
@@ -73,6 +77,7 @@ public class UserController {
     HttpStatus result = HttpStatus.OK;
     try {
       if (userService.deleteUserById(id) == 0) {
+        logger.info("deleteUserById id: {}", id);
         result = HttpStatus.BAD_REQUEST;
       }
     } catch (Exception e) {
