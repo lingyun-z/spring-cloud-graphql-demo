@@ -1,0 +1,27 @@
+schema {
+    query: Query
+    mutation: Mutation
+}
+
+type User {
+    id: String!
+    name: String!
+    mail: String!
+}
+
+input UserInput {
+    name: String!
+    mail: String!
+}
+
+type Query {
+    #    selectTicketById: Ticket!
+    allUsers: [User]
+    selectUserById(id: ID!): User!
+}
+
+type Mutation {
+    createUser(user: UserInput!): User
+    deleteUser(id: ID!): Boolean
+    updataUserById(id: ID!, user: UserInput): User
+}

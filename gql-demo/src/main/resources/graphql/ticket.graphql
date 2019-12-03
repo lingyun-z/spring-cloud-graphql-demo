@@ -1,0 +1,7 @@
+type Ticket {
+    id: String!
+    title: String!
+    createdBy: String!
+    deleted: Boolean!
+    user: User!
+}

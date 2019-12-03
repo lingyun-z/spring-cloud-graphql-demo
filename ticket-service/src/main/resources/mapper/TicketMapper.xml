@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.example.ticketservice.dao.TicketMapper">
+    <resultMap id="TicketMap" type="com.example.ticketservice.entity.Ticket">
+        <id column="ticket_id" property="id" jdbcType="VARCHAR"/>
+        <result column="ticket_title" property="title" jdbcType="VARCHAR"/>
+        <result column="ticket_created_by" property="createdBy" jdbcType="VARCHAR"/>
+        <result column="ticket_is_deleted" property="isDeleted" jdbcType="BOOLEAN"/>
+    </resultMap>
+
+    <sql id="ticket">
+        ticket_id, ticket_title, ticket_created_by, ticket_is_deleted
+    </sql>
+
+    <select id="selectTicketById" resultMap="TicketMap" parameterType="java.lang.String">
+        SELECT
+        <include refid="ticket"/>
+        FROM ticket
+        WHERE ticket_id = #{id, jdbcType=VARCHAR} AND ticket_is_deleted = false
+    </select>
+
+    <select id="getAll" resultMap="TicketMap">
+        SELECT
+        <include refid="ticket"/>
+        FROM ticket
+        WHERE ticket_is_deleted = false
+    </select>
+
+    <select id="selectTicketByUserId" resultMap="TicketMap" parameterType="java.lang.String">
+        SELECT
+        <include refid="ticket"/>
+        FROM ticket
+        WHERE ticket_created_by = #{userId, jdbcType=VARCHAR} AND ticket_is_deleted = false
+    </select>
+
+    <update id="updateTicket" parameterType="com.example.ticketservice.entity.Ticket">
+        UPDATE ticket
+        <set>
+            <if test="title != null">
+                ticket_title = #{title, jdbcType=VARCHAR},
+            </if>
+            <if test="createdBy != null">
+                ticket_created_by = #{createdBy, jdbcType=VARCHAR},
+            </if>
+        </set>
+        WHERE ticket_id = #{id, jdbcType=VARCHAR} AND ticket_is_deleted = false
+    </update>
+
+    <update id="deleteTicketById" parameterType="java.lang.String">
+        UPDATE ticket
+        <set>
+            ticket_is_deleted = true
+        </set>
+        WHERE ticket_id = #{id, jdbcType=VARCHAR}
+    </update>
+
+    <insert id="createTicket" parameterType="com.example.ticketservice.entity.Ticket">
+        <selectKey resultType="java.lang.String" order="BEFORE" keyProperty="id">
+            SELECT uuid()
+        </selectKey>
+        INSERT INTO ticket
+        <trim prefix="(" suffix=")" suffixOverrides="," >
+            ticket_id,
+            <if test="title != null" >
+                ticket_title,
+            </if>
+            <if test="createdBy != null" >
+                ticket_created_by,
+            </if>
+            ticket_is_deleted,
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides="," >
+            #{id, jdbcType=VARCHAR},
+            <if test="title != null" >
+                #{title, jdbcType=VARCHAR},
+            </if>
+            <if test="createdBy != null" >
+                #{createdBy, jdbcType=VARCHAR},
+            </if>
+            <if test="isDeleted != null">
+                #{isDeleted, jdbcType=BOOLEAN},
+            </if>
+        </trim>
+    </insert>
+</mapper>

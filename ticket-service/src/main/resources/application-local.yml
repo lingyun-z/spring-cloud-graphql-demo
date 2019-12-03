@@ -1,0 +1,18 @@
+eureka:
+  client:
+    serviceUrl:
+      defaultZone: http://localhost:8761/eureka/
+mybatis:
+  typeAliasesPackage: com.example.ticketservice.**.entity
+  mapperLocations: classpath:mapper/*.xml
+server:
+  port: 8763
+spring:
+  application:
+    name: ticket-service
+  profiles:
+    active: local
+  datasource:
+    url: jdbc:mysql://localhost:3306/ticket?useUnicode=true&autoReconnect=true&rewriteBatchedStatements=TRUE
+    username: root
+    password: root
