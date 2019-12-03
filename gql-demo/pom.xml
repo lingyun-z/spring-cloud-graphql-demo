@@ -44,11 +44,6 @@
 		</dependency>
 		<dependency>
 			<groupId>com.graphql-java</groupId>
-			<artifactId>voyager-spring-boot-starter</artifactId>
-			<version>5.0.2</version>
-		</dependency>
-		<dependency>
-			<groupId>com.graphql-java</groupId>
 			<artifactId>graphql-java</artifactId>
 			<version>11.0</version>
 		</dependency>
@@ -56,11 +51,6 @@
 			<groupId>com.graphql-java</groupId>
 			<artifactId>graphql-java-tools</artifactId>
 			<version>5.2.3</version>
-		</dependency>
-		<dependency>
-			<groupId>com.apollographql.apollo</groupId>
-			<artifactId>apollo-runtime</artifactId>
-			<version>0.4.1</version>
 		</dependency>
 
 		<dependency>

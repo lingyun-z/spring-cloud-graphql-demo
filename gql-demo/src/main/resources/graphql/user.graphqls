@@ -1,8 +1,3 @@
-schema {
-    query: Query
-    mutation: Mutation
-}
-
 type User {
     id: String!
     name: String!
@@ -14,14 +9,11 @@ input UserInput {
     mail: String!
 }
 
-type Query {
-    #    selectTicketById: Ticket!
+extend type Query {
     allUsers: [User]
     selectUserById(id: ID!): User!
 }
 
-type Mutation {
-    createUser(user: UserInput!): User
-    deleteUser(id: ID!): Boolean
-    updataUserById(id: ID!, user: UserInput): User
+extend type Mutation {
+    addUser(user: UserInput!): User!
 }

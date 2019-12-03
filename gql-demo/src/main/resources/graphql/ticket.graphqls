@@ -5,3 +5,11 @@ type Ticket {
     deleted: Boolean!
     user: User!
 }
+
+type Query {
+    selectTicketById(id: ID!): Ticket!
+}
+
+type Mutation{
+
+}
