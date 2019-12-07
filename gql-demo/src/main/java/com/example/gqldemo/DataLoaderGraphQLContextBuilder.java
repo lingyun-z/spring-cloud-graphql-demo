@@ -12,7 +12,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.websocket.server.HandshakeRequest;
 
 @Component
-public class CustomGraphQLContextBuilder implements GraphQLContextBuilder {
+public class DataLoaderGraphQLContextBuilder implements GraphQLContextBuilder {
   @Autowired
   private UserBatchLoader userBatchLoader;
 

@@ -35,7 +35,8 @@ public class Query implements GraphQLQueryResolver {
   }
 
   public List<Ticket> getAllTicket() {
-    logger.info("getAllTicket");
     return ticketService.getAllTicket();
   }
+
+
 }
