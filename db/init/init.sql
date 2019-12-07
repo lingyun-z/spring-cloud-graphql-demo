@@ -1,0 +1,2 @@
+CREATE DATABASE ticket;
+CREATE DATABASE user;

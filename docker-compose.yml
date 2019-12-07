@@ -1,7 +1,7 @@
 version: "3"
 services:
   mysql:
-    container_name: mysql8
+    container_name: mysql
     image: mysql:latest
     restart: always
     environment:
@@ -10,4 +10,6 @@ services:
       MYSQL_PASSWORD: root
     ports:
       - "3306:3306"
-    command: ['mysqld', '--character-set-server=utf8mb4', '--collation-server=utf8mb4_unicode_ci']
+    volumes:
+      - "./db/init:/docker-entrypoint-initdb.d/"
+      - "./db/conf/my.cnf:/etc/my.cnf"

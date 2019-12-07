@@ -6,7 +6,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
-@FeignClient(value = "user-service")
+@FeignClient(value = "user-service", path = "/api/user")
 public interface UserService {
   @GetMapping(value = "/api/user/{id}")
   User selectUserById(@PathVariable("id") String id);
@@ -19,5 +19,4 @@ public interface UserService {
 
   @PostMapping(value = "/api/user")
   User addUser(@RequestBody User user);
-
 }

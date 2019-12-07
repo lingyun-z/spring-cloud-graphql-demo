@@ -48,7 +48,7 @@
                 user_mail,
             </if>
         </trim>
-        <trim prefix="values (" suffix=")" suffixOverrides="," >
+        <trim prefix="VALUES (" suffix=")" suffixOverrides="," >
             #{id, jdbcType=VARCHAR},
             <if test="name != null" >
                 #{name, jdbcType=VARCHAR},
