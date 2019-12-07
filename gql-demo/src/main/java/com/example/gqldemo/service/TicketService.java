@@ -1,4 +1,4 @@
-package com.example.gqldemo.dao;
+package com.example.gqldemo.service;
 
 import com.example.gqldemo.model.Ticket;
 import org.springframework.cloud.openfeign.FeignClient;
@@ -8,7 +8,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import java.util.List;
 
 @FeignClient(value = "ticket-service")
-public interface TicketDao {
+public interface TicketService {
   @GetMapping("/api/ticket")
   List<Ticket> getAllTicket();
 

@@ -9,6 +9,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.Resource;
+import java.util.Collections;
 import java.util.List;
 
 @RestController
@@ -38,6 +39,19 @@ public class UserController {
     try {
       result = userService.selectUserById(id);
       logger.info("getUserById id: {}", id);
+    } catch (Exception e) {
+      logger.error(e.getMessage());
+      return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
+    }
+    return new ResponseEntity<>(result, HttpStatus.OK);
+  }
+
+  @PostMapping("/batch")
+  public ResponseEntity<List<User>> getUserByIds(@RequestBody List<String> ids) {
+    List<User> result = null;
+    try {
+      result = userService.getUserByIds(ids);
+      logger.info("getUserByIds ids: {}", ids.toString());
     } catch (Exception e) {
       logger.error(e.getMessage());
       return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);

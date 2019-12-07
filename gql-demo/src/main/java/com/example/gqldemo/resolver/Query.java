@@ -1,10 +1,12 @@
 package com.example.gqldemo.resolver;
 
 import com.coxautodev.graphql.tools.GraphQLQueryResolver;
-import com.example.gqldemo.dao.TicketDao;
-import com.example.gqldemo.dao.UserDao;
+import com.example.gqldemo.service.TicketService;
+import com.example.gqldemo.service.UserService;
 import com.example.gqldemo.model.Ticket;
 import com.example.gqldemo.model.User;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Component;
 
 import javax.annotation.Resource;
@@ -12,25 +14,28 @@ import java.util.List;
 
 @Component
 public class Query implements GraphQLQueryResolver {
-  @Resource
-  private UserDao userDao;
+  private final Logger logger = LoggerFactory.getLogger(Query.class);
 
   @Resource
-  private TicketDao ticketDao;
+  private UserService userService;
+
+  @Resource
+  private TicketService ticketService;
 
   public List<User> allUsers() {
-    return userDao.getAllUsers();
+    return userService.getAllUsers();
   }
 
   public User selectUserById(String id) {
-    return userDao.selectUserById(id);
+    return userService.selectUserById(id);
   }
 
   public Ticket selectTicketById(String id) {
-    return ticketDao.selecteTicketById(id);
+    return ticketService.selecteTicketById(id);
   }
 
   public List<Ticket> getAllTicket() {
-    return ticketDao.getAllTicket();
+    logger.info("getAllTicket");
+    return ticketService.getAllTicket();
   }
 }

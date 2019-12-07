@@ -34,7 +34,6 @@ public class TicketController {
 
   @GetMapping
   public ResponseEntity<List<Ticket>> getAllTickets() {
-    logger.info("getAllTickets");
     List<Ticket> tickets = null;
     try {
       tickets = ticketService.getAll();

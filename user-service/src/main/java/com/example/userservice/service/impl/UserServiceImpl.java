@@ -38,6 +38,11 @@ public class UserServiceImpl implements UserService {
   }
 
   @Override
+  public List<User> getUserByIds(List<String> ids) {
+    return userMapper.getUserByIds(ids);
+  }
+
+  @Override
   public List<User> getAll() {
     return userMapper.getAll();
   }

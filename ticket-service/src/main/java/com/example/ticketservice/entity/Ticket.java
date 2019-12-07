@@ -47,4 +47,14 @@ public class Ticket {
   public void setDeleted(boolean deleted) {
     isDeleted = deleted;
   }
+
+  @Override
+  public String toString() {
+    return "Ticket{" +
+            "id='" + id + '\'' +
+            ", title='" + title + '\'' +
+            ", createdBy='" + createdBy + '\'' +
+            ", isDeleted=" + isDeleted +
+            '}';
+  }
 }

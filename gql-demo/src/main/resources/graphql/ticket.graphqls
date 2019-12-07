@@ -6,6 +6,10 @@ type Ticket {
     user: User
 }
 
+type TicketList {
+    tickets: [Ticket]
+}
+
 type Query {
     selectTicketById(id: ID!): Ticket!
     getAllTicket: [Ticket]!

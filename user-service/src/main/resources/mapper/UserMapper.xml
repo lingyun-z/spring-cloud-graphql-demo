@@ -24,6 +24,16 @@
         FROM user
     </select>
 
+    <select id="getUserByIds" resultMap="UserMap">
+        SELECT
+        <include refid="user"/>
+        FROM user
+        WHERE user_id IN
+        <foreach collection="ids" open="(" close=")" separator="," item="id">
+            #{id}
+        </foreach>
+    </select>
+
     <insert id="createUser" parameterType="com.example.userservice.entity.User">
         <selectKey resultType="java.lang.String" order="BEFORE" keyProperty="id">
             SELECT uuid()

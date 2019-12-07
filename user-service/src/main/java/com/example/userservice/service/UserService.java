@@ -13,5 +13,7 @@ public interface UserService {
 
   User selectUserById(String id);
 
+  List<User> getUserByIds(List<String> ids);
+
   List<User> getAll();
 }
