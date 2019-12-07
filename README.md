@@ -54,7 +54,7 @@ query getAllTicket {
     title
     createdBy
     deleted
-   user {
+    user {
       id
       name
       mail
