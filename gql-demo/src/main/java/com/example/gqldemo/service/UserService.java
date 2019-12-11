@@ -8,15 +8,15 @@ import java.util.List;
 
 @FeignClient(value = "user-service", path = "/api/user")
 public interface UserService {
-  @GetMapping(value = "/api/user/{id}")
+  @GetMapping(value = "/{id}")
   User selectUserById(@PathVariable("id") String id);
 
-  @GetMapping(value = "/api/user")
+  @GetMapping
   List<User> getAllUsers();
 
-  @PostMapping(value = "/api/user/batch")
+  @PostMapping(value = "/batch")
   List<User> getUserByIds(@RequestBody List<String> ids);
 
-  @PostMapping(value = "/api/user")
+  @PostMapping
   User addUser(@RequestBody User user);
 }

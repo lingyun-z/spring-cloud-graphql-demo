@@ -7,14 +7,14 @@ import org.springframework.web.bind.annotation.PathVariable;
 
 import java.util.List;
 
-@FeignClient(value = "ticket-service")
+@FeignClient(value = "ticket-service", path = "/api/ticket")
 public interface TicketService {
-  @GetMapping("/api/ticket")
+  @GetMapping
   List<Ticket> getAllTicket();
 
-  @GetMapping("/api/ticket/{id}")
+  @GetMapping("/{id}")
   Ticket selecteTicketById(@PathVariable("id") String id);
 
-  @GetMapping("/api/ticket/user-ticket/{user-id}")
+  @GetMapping("/user-ticket/{user-id}")
   List<Ticket> selecteTicketByUserId(@PathVariable("user-id") String userId);
 }
